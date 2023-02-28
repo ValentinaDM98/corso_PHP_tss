@@ -7,12 +7,14 @@ class ValidateDate implements Validable{
         //DateTime è una classe
 
         $sanitaze = trim(strip_tags($value));
-        $dt = DateTime::createFromFormat('d/m/y',$sanitaze);
-        if($dt){
-           //return $dt;
+        $dt = DateTime::createFromFormat('d/m/Y',$sanitaze);
+
+        //se data non è false viene formattato il valore, che deve essere = a sanitaze
+        if($dt && $dt->format('d/m/Y') === $sanitaze){
            return $dt->format('d/m/Y');
         }else{
-            return $dt;
+            //se $dt è false restituisce subito false
+            return false;
         }
     }
 
