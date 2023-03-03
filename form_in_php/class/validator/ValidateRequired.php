@@ -1,4 +1,13 @@
 <?php
+/**
+ * Cosa vogliamo dalla nostra classe:
+ * - Preservare il valore iniziale valido (e ripulito) del campo di testo 
+ * - visualizzare il messggio di errore per il singolo campo 
+ *    + sapere se c'è un errore (isValid)
+ *    + ripulire e controllare i valori (sicurezza)
+ *    + ogni validazione ha il suo messaggio di errore
+ *    + impostare la classe di bootstrap is-invalid
+ */
 
 class ValidateRequired implements Validable {
     
