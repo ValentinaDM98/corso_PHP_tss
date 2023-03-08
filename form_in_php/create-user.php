@@ -14,7 +14,7 @@ $validatorGender = new ValidateRequired('', 'Il genere è obbligatorio');
 $validatorUsername = new ValidateRequired('', 'La mail è obbligatoria');
 $validatorPassword = new ValidateRequired('', 'La password è obbligatoria');
 
-
+//$validatorMail = new ValidateMail();
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -129,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                          </div>
                          <div class="mb-3">
                               <label for="username" class="form-label">nome utente</label>
-                              <input type="text" value="<?= $validatorUsername->getValue() ?>" class="form-control <?php echo !$validatorUsername->getValid() ? 'is-invalid' : ''  ?>" name="username" id="username">
+                              <input type="email" value="<?= $validatorUsername->getValue() ?>" class="form-control <?php echo !$validatorUsername->getValid() ? 'is-invalid' : ''  ?>" name="username" id="username">
                               <?php
                               if (!$validatorUsername->getValid()) { ?>
                                    <div class="invalid-feedback">
@@ -141,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                          </div>
                          <div class="mb-3">
                               <label for="password" class="form-label">password</label>
-                              <input type="text" value="<?= $validatorPassword->getValue() ?>" id="password" name="password" class="form-control <?php echo !$validatorPassword->getValid() ? 'is-invalid' : ''  ?>">
+                              <input type="password" value="<?= $validatorPassword->getValue() ?>" id="password" name="password" class="form-control <?php echo !$validatorPassword->getValid() ? 'is-invalid' : ''  ?>">
                               <?php
                               if (!$validatorPassword->getValid()) { ?>
                                    <div class="invalid-feedback">
