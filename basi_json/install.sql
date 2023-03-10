@@ -23,8 +23,8 @@ CREATE Table provincia (
     id_regione int NOT NULL,
     nome VARCHAR(255) not NULL,
     sigla CHAR(2) not NULL,
-    PRIMARY KEY (id_provincia),
-    FOREIGN KEY (id_regione) REFERENCES regione (id_regione)
+    PRIMARY KEY (id_provincia)
+    /*FOREIGN KEY (id_regione) REFERENCES regione (id_regione)*/
     );
 
 

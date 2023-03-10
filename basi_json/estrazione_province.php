@@ -18,13 +18,18 @@ try {
         //ADDSLASHES converte tutti i caratteri che possono creare conflitto es. \ in Valle d'Aosta
         $nome = addslashes($provincia->nome);
         $sigla = addslashes($provincia->sigla);
-        $id_regione = $conn->query ("SELECT id_regione FROM regione WHERE nome = '$regione';");
-        $id_regione->fetchColumn();
-        print_r($id_regione);
+        $regione = addslashes($provincia->regione);
 
-       // $sql = "INSERT INTO province (nome, sigla, id_regione) VALUES ('$nome,$sigla,$id_regione');";
-       // echo $sql."\n";
-       // $conn->query($sql);
+        $q = "SELECT id_regione FROM regione WHERE nome = '$regione';";
+        $id_regione = $conn->query ($q);
+        $risultato = $id_regione->fetchColumn();
+        //print_r($risultato);
+       // echo $q;
+       // die();
+        
+       $sql = "INSERT INTO provincia (nome, sigla, id_regione) VALUES ('$nome','$sigla','$risultato');";
+      // echo $sql."\n";
+       $conn->query($sql);
 
     }
     
