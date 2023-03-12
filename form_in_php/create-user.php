@@ -2,6 +2,9 @@
 
 //error_reporting(E_ALL); li vede tutti
 //error_reporting(0); li spegne tutti
+require "../config.php";
+require "./class/Registry/it/Regione.php";
+require "./class/Registry/it/Provincia.php";
 require "./class/validator/Validable.php";
 require "./class/validator/ValidateRequired.php";
 // print_r($_POST);
@@ -110,6 +113,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                               }
                               ?>
                          </div>
+
+                         <div class="mb-3">
+                              <div class = "row">
+                              <div class="col">
+                                   <label for = "birth_city" class= "form-label">Città</label>
+                                   <input type="text" class="form-control" name="birth_city" id="birth_city">
+                              </div>
+                              <div class="col"> 
+                                   <label for = "birth_region" class= "form-label">Regione</label>
+                                   <!-- select, voglio ottenere l'elenco regioni -->
+                                   <select id = "birth_region" class="birth_region" name="birth_region">
+                                   <?php foreach (Regione::all() as $regione) : ?>
+                                   <option value="<?= $regione->id_regione?>"><?=$regione->nome ?></option>
+                                   <?php endforeach; ?>
+                                   </select>                      
+                              </div>
+                              <div class="col">
+                                   <label for = "birth_province" class= "form-label">Province</label>
+                                   <select id = "birth_province" class="birth_province" name="birth_province">
+                                   <!-- select, voglio ottenere l'elenco province -->
+                                   <?php foreach (Provincia::all() as $provincia) : ?>
+                                   <option value="<?= $provincia->id_provincia?>"><?=$provincia->nome ?></option>
+                                   <?php endforeach; ?>
+                                   </select>   
+                              </div>
+                              </div>
+                         </div>
+
                          <div class="mb-3">
                               <label for="gender" class="form-label">genere</label>
                               <select name="gender" class="form-select <?php echo !$validatorGender->getValid() ? 'is-invalid' : ''  ?>" id="gender">

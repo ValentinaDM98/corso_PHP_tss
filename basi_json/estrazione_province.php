@@ -23,12 +23,12 @@ try {
         $q = "SELECT id_regione FROM regione WHERE nome = '$regione';";
         $id_regione = $conn->query ($q);
         $risultato = $id_regione->fetchColumn();
-        //print_r($risultato);
+        print_r($risultato);
        // echo $q;
        // die();
         
        $sql = "INSERT INTO provincia (nome, sigla, id_regione) VALUES ('$nome','$sigla','$risultato');";
-      // echo $sql."\n";
+       echo $sql."\n";
        $conn->query($sql);
 
     }
