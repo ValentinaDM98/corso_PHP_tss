@@ -1,5 +1,7 @@
 <?php
 
+use validator\ValidateRequired;
+
 require "./form_in_php/class/validator/Validable.php";
 require "./form_in_php/class/validator/ValidateRequired.php";
 

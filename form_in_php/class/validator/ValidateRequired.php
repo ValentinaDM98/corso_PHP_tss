@@ -1,4 +1,5 @@
 <?php
+namespace validator;
 /**
  * Cosa vogliamo dalla nostra classe:
  * 1. Preservare il valore iniziale valido (e ripulito) del campo di testo 
@@ -13,7 +14,6 @@ class ValidateRequired implements Validable {
     //1. Preservare il valore iniziale valido (e ripulito) del campo di testo 
     private $value; //valore immesso nel form ripulito 
     private $message;
-    private $hasMessage;
     //Rappresenta se il valore è valido e se devo visualizzare il messaggio
     private $valid;
 

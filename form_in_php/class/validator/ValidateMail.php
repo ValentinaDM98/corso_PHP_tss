@@ -1,4 +1,7 @@
 <?php
+
+namespace validator;
+
 class ValidateMail implements Validable{
 
     private $value; //valore immesso nel form ripulito 

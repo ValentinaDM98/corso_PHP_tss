@@ -1,26 +1,50 @@
 <?php
+namespace validator;
 
-class ValidateDate implements Validable{
-    public function isValid($value){
-        // createFromFormat è un metodo statico (la classe non è istanziata)
-        // :: significa appartenente alla classe
-        //DateTime è una classe
+class ValidateDate implements Validable {
 
-        $sanitaze = trim(strip_tags($value));
-        $dt = DateTime::createFromFormat('d/m/Y',$sanitaze);
+     /** @var string rappresenta il valore immesso nel form ripulito */
+    private $value;
+    private $message;
 
-        //se data non è false viene formattato il valore, che deve essere = a sanitaze
-        if($dt && $dt->format('d/m/Y') === $sanitaze){
-           return $dt->format('d/m/Y');
-        }else{
-            //se $dt è false restituisce subito false
-            return false;
-        }
+    /** se il valore è valido e se devo visualizzare il messaggio  */
+    private $valid;
+
+    public function __construct($default_value='',$message='è obbligatorio') {
+        $this->value = $default_value;
+        $this->valid = true;
+        $this->message = $message;
     }
 
-    public function message()
+    public function isValid($value)
     {
-        return 'data non valida';
+        $strip_tag = strip_tags($value);
+        $sanitize = trim($strip_tag);
+        
+        $dt = \DateTime::createFromFormat('d/m/Y',$sanitize);
+        if($dt && $dt->format('d/m/Y') === $sanitize) {
+
+            return $dt->format('d/m/Y');
+        
+        }else{
+            return false;
+        };
     }
     
-};
+
+    public function getValue()
+    {
+      return $this->value;
+    }
+   
+    public function getMessage()
+    {
+      return $this->message;
+    }
+   
+    public function getValid()
+    {
+      return $this->valid;
+    }
+
+}

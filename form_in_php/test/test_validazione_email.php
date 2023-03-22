@@ -3,6 +3,8 @@
 // $files = scandir("./form_in_php/class/validator");
 // print_r($files);
 
+use validator\ValidateMail;
+
 require "./form_in_php/class/validator/Validable.php";
 require "./form_in_php/class/validator/ValidateMail.php";
 
