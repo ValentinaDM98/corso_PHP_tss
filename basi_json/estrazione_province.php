@@ -22,6 +22,7 @@ try {
 
         $q = "SELECT id_regione FROM regione WHERE nome = '$regione';";
         $id_regione = $conn->query ($q);
+        //ritorna il valore specificato dalla colonna
         $risultato = $id_regione->fetchColumn();
         print_r($risultato);
        // echo $q;

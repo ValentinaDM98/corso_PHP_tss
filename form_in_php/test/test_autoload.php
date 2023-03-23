@@ -22,11 +22,10 @@ spl_autoload_register(function($className){
 
 //con namespace
 spl_autoload_register(function($className){
-   echo "\nsto cercando $className\n";
+   //echo "\nsto cercando $className\n";
     //validator\ValidateMail -> voglio sostituire il \ in / nel className
     $className = str_replace('\\', "/",$className);
     require "./form_in_php/class/".$className.".php";
-    
 
 });
 

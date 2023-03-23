@@ -3,6 +3,8 @@
 //error_reporting(E_ALL); li vede tutti
 //error_reporting(0); li spegne tutti
 
+use crud\UserCRUD;
+use models\User;
 use Registry\it\Provincia;
 use Registry\it\Regione;
 use validator\ValidateDate;
@@ -20,18 +22,23 @@ require "./autoload.php";
 
 //TODO: Implementare criteri mutipli di valiidazione (array di validazioni non singole)
 //le variabili diventano indici dell'array
+
+//una soluzione possibile per la validazione multipla è creare un array
+//'username' => [new ValidateRequired('', 'Username obbligatorio'), new ValidateMail('','')];
+
      $validatorRunner = new ValidatorRunner([
-          'first_name' => new ValidateRequired('','Il Nome è obblicatorio'),
-          'last_name'  => new ValidateRequired('','Il Cognome è obblicatorio'),
+          'first_name' => new ValidateRequired('','Il Nome è obbligatorio'),
+          'last_name'  => new ValidateRequired('','Il Cognome è obbligatorio'),
           'birthday'  => new ValidateDate('','La data di nascità non è valida'),
+          'birthday'  => new ValidateRequired('','La data di nascità è obbligatoria'),
           'gender'  => new ValidateRequired('','Il Genere è obbligatorio'),
           'birth_city'  => new ValidateRequired('','La città  è obbligatoria'),
-          'birth_region'  => new ValidateRequired('','La regione è obbligatoria'),
-          'birth_province'  => new ValidateRequired('','La provincia è obbligatoria'),
-      
-          'username'  => new ValidateRequired('','Username è obbligaztorio'),
+          'regione_id'  => new ValidateRequired('','La regione è obbligatoria'),
+          'provincia_id'  => new ValidateRequired('','La provincia è obbligatoria'),
+          'username'  => new ValidateRequired('','Username è obbligatorio'),
           // 'username:email'  => new ValidateMail('','Formato email non valido'),
           'password'  => new ValidateRequired('','Password è obbligatorio')
+
       ]);
       extract($validatorRunner->getValidatorList());
       
@@ -41,8 +48,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
      $validatorRunner->isValid();
   
      if($validatorRunner->getValid()){
-         echo "posso inviare i dati al server";
+       //i dati mi arrivano da un array, ma il crud lavora con oggetto 
+        // $user = (object) $_POST;
+        $user = User::arrayToUser($_POST);
+
+         $crud = new UserCRUD();
+         //il create del crud vuole un oggetto di tipo user
+         $crud->create($user);
+
+         //redirect
+         header("location: http://www.google.com");
+     
      }
+
 }
 
 /*if($validatorName->getValid() && $validatorLastName->getValid() && $validatorGender->getValid()){
@@ -123,32 +141,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     <div class="col">
                         
                         <label for="birth_city" class="form-label">Città</label>
-                        <input type="text" class="form-control" name="birth_city" id="birth_city">
-
-
+                        <input type="text" value="<?= $birth_city->getValue() ?>" class="form-control <?php echo !$birth_city->getValid() ? 'is-invalid':'' ?>" name="birth_city" id="birth_city">
+                        
+                        <?php if (!$birth_city->getValid()) : ?>
+                            <div class="invalid-feedback">
+                                <?php echo $birth_city->getMessage() ?>
+                            </div>
+                        <?php endif ?>
                     </div>
                               <div class="col"> 
                                    <label for = "birth_region" class= "form-label">Regione</label>
                                    <!-- select, voglio ottenere l'elenco regioni -->
-                                   <select id = "birth_region" class="form-select birth_region" name="birth_region">
+                                   <select id = "birth_region" value="<?= $regione_id->getValue() ?>"class="form-select birth_region <?php echo !$regione_id->getValid() ? 'is-invalid':'' ?>" name="regione_id">
                                    <option value=""></option>
                                    <?php foreach (Regione::all() as $regione) : ?>
-                                   <option value="<?= $regione->id_regione?>"><?=$regione->nome ?></option>
+                                   <option value="<?= $regione->regione_id?>"><?=$regione->nome ?></option>
                                    <?php endforeach; ?>
-                                   </select>                      
+                                   </select>     
+                                   <?php if (!$regione_id->getValid()) : ?>
+                            <div class="invalid-feedback">
+                                <?php echo $regione_id->getMessage() ?>
+                            </div>
+                        <?php endif ?>                 
                               </div>
+                              
                               <div class="col">
                                    <label for = "birth_province" class= "form-label">Province</label>
-                                   <select id = "birth_province" class="form-select birth_province" name="birth_province">
+                                   <select id = "birth_province" value="<?= $provincia_id->getValue() ?>" class="form-select birth_province <?php echo !$provincia_id->getValid() ? 'is-invalid':'' ?>" name="provincia_id">
                                    <option value=""></option>
                                    <!-- select, voglio ottenere l'elenco province -->
                                    <?php foreach (Provincia::all() as $provincia) : ?>
-                                   <option value="<?= $provincia->id_provincia?>"><?=$provincia->nome ?></option>
+                                   <option value="<?= $provincia->provincia_id?>"><?=$provincia->nome ?></option>
                                    <?php endforeach; ?>
                                    </select>   
+                                   <?php if (!$provincia_id->getValid()) : ?>
+                            <div class="invalid-feedback">
+                                <?php echo $provincia_id->getMessage() ?>
+                            </div>
+                        <?php endif ?>                 
                               </div>
-                              </div>
-                         </div>
 
                          <div class="mb-3">
                         <!-- <h1><?php echo $gender->getValue() == 'M' ? 'AA':'BB' ?></h1> -->

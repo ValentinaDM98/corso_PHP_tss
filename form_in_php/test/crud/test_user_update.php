@@ -1,7 +1,5 @@
 <?php
-//php form_in_php/test/test_user.php
-//i test li lanciamo dalla root, quindi abbiamo già il file config
-
+#php form_in_php/test/crud/test_user_update.php
 use crud\UserCRUD;
 use models\User;
 
@@ -15,7 +13,6 @@ $user = new User();
 
 $user->first_name = "Luigi";
 $user->last_name = "Verdi";
-//formato sql perchè va nella query
 $user->birthday = "2017-01-01";
 $user->birth_city = "Torino";
 $user->regione_id = "9";
@@ -25,25 +22,19 @@ $user->username = "luigiverdi@gmail.com";
 $user->password = md5('Password');
 
 $crud->create($user);
+print_r($crud->read(1));
 
-$result = $crud->read();
-if(count($result) == 1){
-    echo "test utente inserito ok";
-}
+$user = $crud->read(1);
+$user->first_name = "Giorgio";
+$user->last_name = "Santo";
+$user->birthday = "2015-01-03";
+$user->birth_city = "Roma";
+$user->regione_id = "4";
+$user->provincia_id = "8";
+$user->gender = "M";
+$user->username = "giorgiosanto@gmail.com";
+$user->password = md5('Password');
 
-print_r($result);
-
-//test
-try {
-    $crud->create($user);
-} catch (\Throwable $th) {
-    if($th->getCode() == "23000"){
-        echo "test superato";
-    }
-    
-}
-
-
-
-
+$crud->update($user);
+print_r($crud->read(1));
 

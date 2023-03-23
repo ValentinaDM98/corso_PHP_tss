@@ -28,7 +28,6 @@ $dsn = "mysql:host=".DB_HOST.";dbname=".DB_NAME;
 //Eccezioni
 try {
     $conn = new PDO($dsn, DB_USER,DB_PASSWORD);
-
     $conn->query('TRUNCATE TABLE regione');
 
     foreach($regioni_unique as $regione){
@@ -37,10 +36,7 @@ try {
         $sql = "INSERT INTO regione (nome) VALUES ('$regione');";
         echo $sql."\n";
         $conn->query($sql);
-
     }
-    
-
 } catch (\Throwable $th) {
     throw $th;
 }
