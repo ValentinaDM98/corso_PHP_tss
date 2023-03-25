@@ -56,8 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
          //il create del crud vuole un oggetto di tipo user
          $crud->create($user);
 
-         //redirect
-         header("location: http://www.google.com");
+         //redirect: posso stabilire un utilizzo
+         //header("location: http://www.google.com");
+         //posso inserire un percorso relativo alla pagina con lista utenti registrati
+         header("location:index-user.php");
+       
      
      }
 
@@ -70,24 +73,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 /* questo script viene eseguito quanod visualizzo per la prima volta il form 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 }*/
+
 ?>
+<!-- spostiamo header nel file che contiene la VIEW, per comodità creo un frammento che posso spostare -->
+<?php require "./class/views/head-view.php" ?> 
 
-
-<!doctype html>
-<html lang="en">
-
-<head>
-     <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <title>Esercitazione Form</title>
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-</head>
-
-<body>
-     <header class="bg-light p-1">
-          <h1 class="display-6">Applicazione demo</h1>
-     </header>
-     <main class="container">
+   
           <section class="row">
           <div class="col-sm-8">
                 <form class="mt-1 mt-md-5" action="create-user.php" method="post">
@@ -230,9 +221,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 </form>
             </div>
           </section>
-     </main>
-
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-</body>
-
-</html>
+          <?php require "./class/views/footer-view.php" ?>
+    

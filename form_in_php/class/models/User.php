@@ -21,6 +21,8 @@ class User
         return $this->first_name . " " . $this->last_name;
     }
 
+    //$class_array array associativo che contiene tutte le informazioni degli attributi dell'oggetto 
+    //user che verrà creato.
     public static function arrayToUser($class_array):User
     {
         $user = new User;

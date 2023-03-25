@@ -9,8 +9,6 @@ use PDO;
 class UserCRUD
 {
 
-
-
     public function create(User $user)
     {
         $query = "INSERT INTO user ( first_name, last_name, birthday, birth_city, regione_id, provincia_id, gender, username, password)
