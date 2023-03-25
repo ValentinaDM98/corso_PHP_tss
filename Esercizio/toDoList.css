@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+  }
+.body{
+    margin:0;
+    padding: 0;
+}
+.header {
+    background-color: #a0e883;
+    padding: 10px 20px;
+    color: white;
+    text-align: center;
+}
+.btn{
+    margin-top: 5px;
+}
+.sfondo{
+ background-color: rgb(235, 237, 170);
+}
+.filter,.filter_date{
+    display: flex;
+    justify-content: space-around;
+    
+}
+.filter__button,.filter__button_date{
+   background-color: #a0e883;
+   
+
+
+}
+.list__task{
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px;
+    background: #eee;
+    font-size: 20px;
+    margin: 10px;
+    border: solid 1px rgb(54, 110, 221);
+    display: flex;
+    
+    
+}
+.avatar{
+    border: 1px solid rgb(54, 110, 221); 
+    display: flex;
+    align-items: center;
+    border-radius: 32px 0px 0px 32px;
+    /* background-color: rgb(176, 233, 240); */
+    margin-bottom: 1rem;
+}
+.avatar__img{
+    /* bordo arrotondato, se 50% diventa un cerchio */
+    border-radius: 50%;
+    width: 30px;
+    margin-right: 1rem;
+}
+.avatar__employee{
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+
+}
+.remove-todo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.4rem;
+    padding: .3rem .6rem;
+    
+}
