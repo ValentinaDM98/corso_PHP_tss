@@ -3,7 +3,7 @@
 
 <footer class="footer-bottom footer mt-auto py-3 bg-light">
   <div class="container">
-    <span class="text-muted">Valentina Del Monaco</span>
+    <!-- <span class="text-muted">Valentina Del Monaco</span> -->
   </div>
 </footer>
 

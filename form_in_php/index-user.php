@@ -32,8 +32,9 @@ $users = (new UserCRUD())->read();
         <th><?php echo $user->birth_city?></th>
         <!-- la regione è una dipendenza, quindi serve una join -->
         <td>
-            <a href= "create-user.php" class="btn btn-primary btn-xs">Edit</a>
-            <button class="btn btn-danger btn-xs">Delete</button>
+            <a href= "edit-user.php?user_id=<?=$user->user_id?>" class="btn btn-primary btn-xs">Edit</a>
+            <!--passo delle informazioni tramite il link, uso l'id che identifica l'utente + prende informazioni dal get-->
+            <a href= "delete-user.php?user_id=<?=$user->user_id?>" class="btn btn-danger btn-xs">Delete</a>
         </td>
        
     </tr>

@@ -56,7 +56,8 @@ class UserCRUD
     }
 
     //leggo le informazioni su tutti gli utenti
-    public function read(int $user_id = null)
+    //la funzione può restituire un utente, un array o un boolean
+    public function read(int $user_id = null):User|array|bool
     {
         $conn = new \PDO(DB_DSN, DB_USER, DB_PASSWORD);
         if (!is_null($user_id)) {

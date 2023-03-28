@@ -4,7 +4,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mar 17, 2023 alle 14:32
+-- Creato il: Mar 24, 2023 alle 12:11
 -- Versione del server: 10.4.27-MariaDB
 -- Versione PHP: 8.2.0
 
@@ -198,7 +198,7 @@ INSERT INTO `regione` (`regione_id`, `nome`) VALUES
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `user_id` int(10) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `birthday` date NOT NULL,
@@ -210,6 +210,17 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+
+INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `birthday`, `birth_city`, `regione_id`, `provincia_id`, `gender`, `username`, `password`) VALUES
+(9, 'Maria', 'Rossi', '2020-04-17', 'sfdsf', 15, 15, 'F', '@b.itdfdfsg', 'segretissimo'),
+(15, 'Giuseppe', 'Verdi', '2017-03-17', 'sfdsf', 16, 15, 'M', 'giuseppe@xcvxc', 'a3ea3259dd51c5d28ac011a8dbf78e79'),
+(19, 'Davide', 'Esliano', '2013-03-17', 'sfdsf', 20, 18, 'M', 'xzczxcxzczxcz', 'a3ea3259dd51c5d28ac011a8dbf78e79'),
+(20, 'mario', 'Prosperini', '2000-03-12', 'sfdsf', 18, 17, 'M', 'wadaswdfasdf asfa', 'a3ea3259dd51c5d28ac011a8dbf78e79'),
+(21, 'Massimo', 'Rivola', '1999-03-01', 'sdfdsfs', 18, 17, 'M', 'a@b.it', 'a3ea3259dd51c5d28ac011a8dbf78e79'),
+(23, 'Marco', 'Belli', '1984-01-11', 'sfdsf', 2, 1, 'M', 'b@b.it', 'a3ea3259dd51c5d28ac011a8dbf78e79');
+
+--
 --
 -- Indici per le tabelle scaricate
 --
@@ -220,20 +231,31 @@ CREATE TABLE `user` (
 ALTER TABLE `provincia`
   ADD PRIMARY KEY (`provincia_id`);
 
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`);
-
-ALTER TABLE `user`
-  ADD UNIQUE (username);
-  -- ADD UNIQUE (first_name, last_name) si applica in contemporanea a più elementi
-
-
-
 --
 -- Indici per le tabelle `regione`
 --
 ALTER TABLE `regione`
   ADD PRIMARY KEY (`regione_id`);
+
+--
+-- Indici per le tabelle `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `username_2` (`username`),
+  ADD UNIQUE KEY `username_3` (`username`),
+  ADD UNIQUE KEY `username_4` (`username`),
+  ADD UNIQUE KEY `username_5` (`username`),
+  ADD UNIQUE KEY `username_6` (`username`),
+  ADD UNIQUE KEY `username_7` (`username`),
+  ADD UNIQUE KEY `username_8` (`username`),
+  ADD UNIQUE KEY `username_9` (`username`),
+  ADD UNIQUE KEY `username_10` (`username`),
+  ADD UNIQUE KEY `username_11` (`username`),
+  ADD UNIQUE KEY `username_12` (`username`),
+  ADD UNIQUE KEY `username_13` (`username`),
+  ADD UNIQUE KEY `username_14` (`username`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
@@ -245,13 +267,17 @@ ALTER TABLE `regione`
 ALTER TABLE `provincia`
   MODIFY `provincia_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
-ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT per la tabella `regione`
 --
 ALTER TABLE `regione`
   MODIFY `regione_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT per la tabella `user`
+--
+ALTER TABLE `user`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
