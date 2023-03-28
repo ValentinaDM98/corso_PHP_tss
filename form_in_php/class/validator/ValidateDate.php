@@ -21,10 +21,10 @@ class ValidateDate implements Validable {
         $strip_tag = strip_tags($value);
         $sanitize = trim($strip_tag);
         
-        $dt = \DateTime::createFromFormat('d/m/Y',$sanitize);
-        if($dt && $dt->format('d/m/Y') === $sanitize) {
+        $dt = \DateTime::createFromFormat('d-m-Y',$sanitize);
+        if($dt && $dt->format('d-m-Y') === $sanitize) {
 
-            return $dt->format('d/m/Y');
+            return $dt->format('d-m-Y');
         
         }else{
             return false;

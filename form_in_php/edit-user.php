@@ -26,28 +26,25 @@ $validatorRunner = new ValidatorRunner([
     'birth_city'  => new ValidateRequired($user->birth_city,'La città  è obbligatoria'),
     'regione_id'  => new ValidateRequired($user->regione_id,'La regione è obbligatoria'),
     'provincia_id'  => new ValidateRequired($user->provincia_id,'La provincia è obbligatoria'),
-
-    'username'  => new ValidateRequired($user->username,'Username è obbligaztorio'),
+    // 'username'  => new ValidateRequired($user->username,'Username è obbligaztorio'),
     // 'username:email'  => new ValidateMail('','Formato email non valido'),
-    'password'  => new ValidateRequired('','Password è obbligatorio')
+    // 'password'  => new ValidateRequired('','Password è obbligatorio')
     # TODO: in update user la password se non è compilata rimane la stessa, se è compilata viene  cambiata 
 ]);
 extract($validatorRunner->getValidatorList());
-print_r($birth_city);
 # --------------------------------------------------------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    die();
     $validatorRunner->isValid();
 
-    
-    if($validatorRunner->getValid()){
-
-       
+    if($validatorRunner->getValid()){       
        $user = User::arrayToUser($_POST);
        $crud = new UserCRUD();
-       $crud->create($user);
+       $user->user_id = filter_input(INPUT_GET,'user_id',FILTER_VALIDATE_INT);
+       $crud->update($user);
        // Redirect
        header("location: index-user.php");
+    }else {
+        echo "form non è valido";
     }
 }
 ?>
@@ -57,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <section class="row">
             <div class="col-sm-8">
-                <form class="mt-1 mt-md-5" action="create-user.php" method="post">
+                <form class="mt-1 mt-md-5" action="edit-user.php?user_id=<?=$user->user_id ?>" method="post">
                     <div class="mb-3">
                         <label for="first_name" class="form-label">nome</label>
                         <input type="text" 
@@ -169,31 +166,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div class="mb-3">
                         <label for="username" class="form-label">Nome Utente / EMAIL</label>
-                        <input type="text" autocomplete="no"  value="<?php echo $username->getValue() ?>" class="form-control 
-                            <?php echo (!$username->getValid() && !$username->getValid()) ? 'is-invalid':'' ?>" name="username" id="username">
-                        <?php
-                        //if (!$username_email->getValid()) : ?>
-                            <div class="invalid-feedback">
-                            <?php //echo $username_email->getMessage() ?>
+                        <input type="text" autocomplete="no"  value="" class="form-control " name="username" id="username">
+                        <div class="invalid-feedback">
                             </div>
-                        <?php // endif ?>
-
-                        <?php
-                        if (!$username->getValid()) : ?>
-                            <div class="invalid-feedback">
-                            <?php echo $username->getMessage() ?>
-                            </div>
-                        <?php endif ?>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input autocomplete="off" type="password" value="<?= $password->getValue()  ?>" id="password" name="password" class="form-control <?php echo !$password->getValid() ? 'is-invalid' : ''  ?>">
-                        <?php
-                        if (!$password->getValid()) : ?>
-                            <div class="invalid-feedback">
-                               <?php echo $password->getMessage() ?>
-                            </div>
-                        <?php endif ?>
+                        <input autocomplete="off" type="password"  value=""  id="password" name="password" class="form-control">
                     </div>
 
                     <button class="btn btn-primary btn-sm" type="submit">Registrati</button>
