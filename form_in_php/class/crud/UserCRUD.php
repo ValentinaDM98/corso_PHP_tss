@@ -50,7 +50,7 @@ class UserCRUD
         $stm->bindValue(':provincia_id', $user->provincia_id, \PDO::PARAM_INT);
         $stm->bindValue(':gender', $user->gender, \PDO::PARAM_STR);
         // $stm->bindValue(':username', $user->username, \PDO::PARAM_STR);
-        // $stm->bindValue(':password', md5($user->password), \PDO::PARAM_STR);
+        // $stm->bindValue(':password', md5($user->password), \PDO::PARAM_STR);f
         $stm->bindValue(':user_id', $user->user_id, \PDO::PARAM_INT);
         $stm->execute();
 
