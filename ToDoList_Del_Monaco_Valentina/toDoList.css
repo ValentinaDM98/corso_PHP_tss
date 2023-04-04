@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+  }
+.body{
+    margin:0;
+    padding: 0;    
+}
+.sfondo{
+    background-color: rgb(220, 204, 215);
+    font-family: 'Edu NSW ACT Foundation', cursive;
+    font-family: 'PT Sans', sans-serif;
+    padding-bottom: 0.5rem;
+}
+.avatar{
+    display: flex;
+    align-items: center;    
+}
+.avatar__img{
+    border-radius: 50%;
+    width: 30px;
+    margin: 0.5rem;
+}
+.header {
+    padding: 0px 10px;
+    text-align: center;
+}
+.form-control{
+     border: solid 1px rgb(54, 110, 221);
+}
+.taskItem__add,.taskItem__date {
+    margin-top: 5px;
+    border: solid 1px rgb(54, 110, 221);
+    background-color: rgb(54, 110, 221);
+}
+.filters {
+    display: flex;
+    justify-content: space-around;
+}
+.avatar__employee{
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    margin-top: 1rem;
+
+}
+.list__tasks{
+    padding: 12px 8px;
+    background: #eee;
+    font-size: 20px;
+    margin: 10px;
+    border: solid 1px rgb(54, 110, 221);
+    display: flex;
+    justify-content: space-between;
+} 
+.remove__task {
+    margin-left: 0.4rem;
+    padding: .3rem .6rem;
+    border: solid 1px rgb(54, 110, 221);
+    background-color: rgb(54, 110, 221); 
+}

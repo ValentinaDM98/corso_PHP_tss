@@ -30,7 +30,8 @@ class UserCRUD
         $stm->bindValue(':password', md5($user->password), \PDO::PARAM_STR);
         // dopo aver associato i valori ai parametri possiamo eseguire la query
         $stm->execute();
-        
+        //id oggetto inserito
+        return $conn->lastInsertId();
     }
 
     public function update($user)
@@ -52,6 +53,8 @@ class UserCRUD
         // $stm->bindValue(':password', md5($user->password), \PDO::PARAM_STR);
         $stm->bindValue(':user_id', $user->user_id, \PDO::PARAM_INT);
         $stm->execute();
+
+        return $stm->rowCount();
        
     }
 
