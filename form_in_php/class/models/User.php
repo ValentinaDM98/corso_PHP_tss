@@ -23,7 +23,7 @@ class User
 
     //$class_array array associativo che contiene tutte le informazioni degli attributi dell'oggetto 
     //user che verrà creato.
-    public static function arrayToUser($class_array):User
+    public static function arrayToUser(array $class_array):User
     {
         $user = new User;
         foreach ($class_array as $class_attribute => $value_of_class_attribute) {

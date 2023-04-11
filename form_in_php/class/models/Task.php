@@ -8,19 +8,11 @@ class Task{
     public $user_id;
     public $name;
     public $due_date;
-    public $done;
+    public bool $done;
 
-    //  //rappresenta nome e cognome dell'utente di seguito
-    //  public function label()
-    //  {
-    //      return $this->first_name . " " . $this->last_name;
-    //  }
- 
-    //  $class_array array associativo che contiene tutte le informazioni degli attributi dell'oggetto 
-    //  user che verrà creato.
-     public static function arrayToTask($class_array):Task
+     public static function arrayToTask(array $class_array)
      {
-         $task = new Task;
+         $task = new Task();
          foreach ($class_array as $class_attribute => $value_of_class_attribute) {
              $task->$class_attribute = $value_of_class_attribute;
          }

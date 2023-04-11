@@ -2,60 +2,55 @@
 
 namespace crud;
 
+use Exception;
 use models\Task;
 use PDO;
 
 class TaskCRUD{
     public function create(Task $task)
     {
-        $query = "INSERT INTO task (user_id, name, due_date, done)
+        $query = "INSERT INTO task ( name, due_date, done, user_id)
         -- //i parametri hanno sempre :davanti
-                 VALUES (:user_id,:name,:due_date,:done)";
+                 VALUES (:name,:due_date,:done,:user_id)
+                ";
         $conn = new \PDO(DB_DSN, DB_USER, DB_PASSWORD);
         $stm = $conn->prepare($query);
         // ci aspettiamo una stringa quindi PARAM_STR o un intero PARAM_INT
         //bind = associa il valore al parametro
-        $stm->bindValue(':user_id', $task->user_id, \PDO::PARAM_INT);
         $stm->bindValue(':name', $task->name, \PDO::PARAM_STR);
         $stm->bindValue(':due_date', $task->due_date, \PDO::PARAM_STR);
-        $stm->bindValue(':done', $task->done, \PDO::PARAM_BOOL);
+        $stm->bindValue(':done', $task->done, \PDO::PARAM_STR);
+        $stm->bindValue(':user_id', $task->user_id, \PDO::PARAM_INT);
         // dopo aver associato i valori ai parametri possiamo eseguire la query
         $stm->execute();
-        //id oggetto inserito
-        return $conn->lastInsertId();
+        return $conn ->lastInsertId();
     }
 
     public function update($task)
     {
         $conn = new \PDO(DB_DSN, DB_USER, DB_PASSWORD);
-        $query = "UPDATE task SET user_id = :user_id, name = name, 
-        birthday = :birthday, birth_city = :birth_city, due_date = :due_date, 
-        done = :done WHERE task_id = :task_id;";
-       
+        $query = "UPDATE task SET name = :name, due_date = :due_date, 
+        done = :done, user_id = :user_id WHERE task_id = :task_id;";
+
         $stm =  $conn->prepare($query);
-        $stm->bindValue(':user_id', $task->user_id, \PDO::PARAM_INT);
         $stm->bindValue(':name', $task->name, \PDO::PARAM_STR);
         $stm->bindValue(':due_date', $task->due_date, \PDO::PARAM_STR);
-        $stm->bindValue(':done', $task->done, \PDO::PARAM_BOOL);
+        $stm->bindValue(':done', $task->done, \PDO::PARAM_STR);
+        $stm->bindValue(':user_id', $task->user_id, \PDO::PARAM_INT);
         $stm->bindValue(':task_id', $task->task_id, \PDO::PARAM_INT);
         $stm->execute();
 
         return $stm->rowCount();
-       
     }
 
-    public function read(int $task_id = null):Task|array|bool
-    {
-        $conn = new \PDO(DB_DSN, DB_USER, DB_PASSWORD);
+    public function read(int $task_id = null) {
+        $conn = new PDO(DB_DSN, DB_USER, DB_PASSWORD);
         if (!is_null($task_id)) {
-            //variante del read passando user_id
             $query = "SELECT * FROM task WHERE task_id = :task_id;";
             $stm =  $conn->prepare($query);
             $stm->bindValue(':task_id', $task_id, PDO::PARAM_INT);
             //ATTENZIONE devo specificare fetch_class perchè altrimenti mi ripete
             //due volte le informazioni (di default è fetch both)
-            //devo specificare il nome della classe: 'models\User'
-            //oppure con User::class chiedo alla classe il nome per esteso 
             $stm->execute();
             $result = $stm->fetchAll(PDO::FETCH_CLASS, Task::class);
 
@@ -63,7 +58,7 @@ class TaskCRUD{
                 return $result[0];
             }
             if (count($result) > 1) {
-                throw new \Exception("Chiave primaria duplicata", 1);
+                throw new Exception("Chiave primaria duplicata", 1);
             }
             if (count($result) === 0) {
                 return false;
@@ -78,7 +73,6 @@ class TaskCRUD{
             }
             return $result;
         }
-        //return $result;
     }
 
     public function delete($task_id)
