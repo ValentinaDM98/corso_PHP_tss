@@ -8,7 +8,7 @@
 // use validator\ValidateMail;
 // use validator\ValidateRequired;
 
-//require_once "./config.php";
+//require_once "./form_in_php/config.php";
 
 
 /*senza namespace

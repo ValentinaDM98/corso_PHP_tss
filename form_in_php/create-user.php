@@ -12,7 +12,7 @@ use validator\ValidateMail;
 use validator\ValidateRequired;
 use validator\ValidatorRunner;
 
-require "../config.php";
+require "../form_in_php/config.php";
 require "./autoload.php";
 // require "./class/Registry/it/Regione.php";
 // require "./class/Registry/it/Provincia.php";

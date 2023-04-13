@@ -2,7 +2,7 @@
 use PHPUnit\Framework\TestCase;
 
 require_once "./tests/HTTPClient.php";
-require_once "./config.php";
+require_once "./form_in_php/config.php";
 
 class TaskApiCreateTest  extends TestCase {
     

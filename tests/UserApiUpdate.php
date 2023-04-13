@@ -4,10 +4,10 @@ use PHPUnit\Framework\TestCase;
 require_once "./tests/HTTPClient.php";
 require_once "./form_in_php/config.php";
 
-class UserApiCreateTest  extends TestCase {
+class UserApiUpdateTest  extends TestCase {
 
 
-    public function test_create_user_api()
+    public function test_update_user_api()
     {
         (new PDO(DB_DSN,DB_USER,DB_PASSWORD))->query("TRUNCATE TABLE user;"); 
         $payload  = [
@@ -23,7 +23,7 @@ class UserApiCreateTest  extends TestCase {
         ];
 
       
-       $response = post("http://localhost/corso_php_tss/form_in_php/rest_api/users.php",$payload);
+       $response = put("http://localhost/corso_php_tss/form_in_php/rest_api/users.php?user_id=1",$payload);
         
        fwrite(STDERR, print_r($response, TRUE));
         //$this->assertNull($response);
@@ -33,5 +33,3 @@ class UserApiCreateTest  extends TestCase {
     }
 
 }
-
-

@@ -5,7 +5,7 @@
 use crud\UserCRUD;
 use models\User;
 
-include "config.php";
+include "form_in_php/config.php";
 include "form_in_php/test/test_autoload.php";
 
 // svuoto  la tabella quando lancio il test

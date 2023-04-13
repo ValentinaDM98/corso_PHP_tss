@@ -2,7 +2,7 @@
 
 use crud\UserCRUD;
 //si trovano nella root 
-require "../config.php";
+require "../form_in_php/config.php";
 require "./autoload.php";
 
 $users = (new UserCRUD())->read();

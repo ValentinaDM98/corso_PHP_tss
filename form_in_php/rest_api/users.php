@@ -3,7 +3,7 @@
 use crud\UserCRUD;
 use models\User;
 
-include "../../config.php";
+include "../../form_in_php/config.php";
 include "../autoload.php";
 
 // echo $_SERVER['REQUEST_METHOD'];

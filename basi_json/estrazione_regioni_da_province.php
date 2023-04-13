@@ -1,6 +1,6 @@
 <?php
 
-include "config.php";
+include "form_in_php/config.php";
 
 //voglio estrarre tutte le stringhe che rappresentano le regioni
 

@@ -1,6 +1,6 @@
 <?php
 use crud\UserCRUD;
-require "../config.php";
+require "../form_in_php/config.php";
 require "./autoload.php";
 
 print_r($_GET);

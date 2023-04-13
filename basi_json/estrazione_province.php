@@ -1,6 +1,6 @@
 <?php
 
-include "config.php";
+include "form_in_php/config.php";
 
 $province_string = file_get_contents('province.json');
 
