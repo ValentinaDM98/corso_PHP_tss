@@ -49,7 +49,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 http_response_code(200);
                 $response = [
                     'data' => $user_id,
-                    'status'=>200
+                    'status'=>200,
+                    'details' => "User con id " . $user_id . " cancellato con successo"
                 ]; 
                 echo json_encode($response);
             }
@@ -87,7 +88,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 
             $response = [
                 'data' => $user,
-                'status' => 202
+                'status' => 201,
+                'details' => "User con id " . $last_id . " creato con successo"
             ];
     
             echo json_encode($response);
@@ -105,14 +107,16 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $request = json_decode($input,true); // ottengo iun array associativo
     
             $user = User::arrayToUser($request);
-            $user->user_id = filter_input(INPUT_GET,'user_id');
+            $user_id = filter_input(INPUT_GET,'user_id');
             $crud->update($user);
 
             unset($user->password); 
+            unset($user->username); 
 
             $response = [
                 'data' => $user,
-                'status' => 202
+                'status' => 201,
+                'details' => "User con id " . $user_id . " aggiornato con successo"
             ];
             echo json_encode($response);
            

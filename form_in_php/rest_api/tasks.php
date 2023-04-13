@@ -36,7 +36,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $task['task_id'] = $last_id;
         $response = [
             'data' => $task,
-            'status' => 201
+            'status' => 201,
+            'details' => "Task con id " . $last_id . " creata con successo"
         ];
         echo json_encode($response);
   break;
@@ -47,7 +48,13 @@ switch ($_SERVER['REQUEST_METHOD']) {
         if(!is_null($task_id)) {
             $rows = $crud->delete($task_id);
             if($rows == 1) {
-                http_response_code(204);
+                http_response_code(200);
+                $response = [
+                    'data' => $task_id,
+                    'status' => 200,
+                    'details' => "Task con id " . $task_id . " cancellata con successo"
+                ];
+                
             }
             if($rows == 0) {
                 http_response_code(404);
@@ -82,8 +89,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
     
                     $response = [
                         'data' => $task,
-                        'status' => 200,
-                        'details' => "Task with ID " . $task_id . " updated successfully"
+                        'status' => 201,
+                        'details' => "Task con id " . $task_id . " aggiornata con successo"
                     ];
                 }
                 if ($rows == 0) {

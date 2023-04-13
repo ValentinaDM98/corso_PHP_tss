@@ -43,6 +43,8 @@ CREATE TABLE `task` (
 
 INSERT INTO `task` (`task_id`, `user_id`, `name`, `due_date`, `done`)
 VALUES (1, 1, 'Comprare latte', '2023-04-24', false),
+(3, 3, 'Andare in palestra', '2021-04-24', true),
+(4, 5, 'Cucinare', '2022-04-24', true),
 (2, 2, 'Fare la spesa', '2023-05-24', true);
 
 
@@ -289,8 +291,8 @@ ALTER TABLE `regione`
 --foreign key per le task
 --
 
-ALTER TABLE `task`
- ADD FOREIGN KEY (user_id) REFERENCES user(user_id);
+-- ALTER TABLE `task`
+--  ADD FOREIGN KEY (user_id) REFERENCES user(user_id);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

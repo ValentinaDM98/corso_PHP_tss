@@ -23,12 +23,13 @@ class UserApiCreateTest  extends TestCase {
         ];
 
       
-       $response = post("http://localhost/corso_php_mysql_2223/form_in_php/rest_api/users.php",$payload);
+       $response = post("http://localhost/corso_php_tss/form_in_php/rest_api/users.php",$payload);
         
+       fwrite(STDERR, print_r($response, TRUE));
         //$this->assertNull($response);
-         //$this->assertJson($response);
+         $this->assertJson($response);
  
-     fwrite(STDERR, print_r($response, TRUE));
+     
     }
 
 }

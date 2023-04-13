@@ -16,7 +16,7 @@ class TaskApiCreateTest  extends TestCase {
             "done" => false
         ];
 
-        $response = post("http://localhost/corso_php_mysql_tss-master/form_in_php/rest_api/tasks.php", $payload);
+        $response = post("http://localhost/corso_php_tss/form_in_php/rest_api/tasks.php", $payload);
         fwrite(STDERR, print_r($response, TRUE));
 
         // $this->assertNull($response);
