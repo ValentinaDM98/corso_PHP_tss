@@ -9,20 +9,35 @@ require "../autoload.php";
 $crud = new TaskCRUD();
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
+
         $task_id = filter_input(INPUT_GET, 'task_id');
-        $user_id = filter_input(INPUT_GET, 'user_id');
-        
-        if (!is_null($user_id)) {
-            $tasks = $crud->read($user_id);
-            echo json_encode($tasks);
-        } elseif (!is_null($task_id)) {
-            $task = $crud->read($task_id);
-            echo json_encode($task);
-        } else {
+        $user_id = filter_input(INPUT_GET,'user_id');
+        if(!is_null($user_id)){
+            $res = $crud->read($user_id);
+            if($res == false){
+                $response = [
+                    'errors' => [
+                        [
+                            'status' => 404,
+                            'title' => "risorsa non trovata",
+                            'details' => filter_input(INPUT_GET,'user_id')
+                         ]
+                    ]    
+                ];  
+                echo json_encode($response);
+            }else{
+                echo json_encode($res);
+            }
+        }else{
             $tasks = $crud->read();
-            echo json_encode($tasks);
+            $response = [
+                'data' => $tasks,
+                'status'=>200
+            ]; 
+            echo json_encode($response);
         }
-        break;
+    break;
+
 
     case 'POST':
         
