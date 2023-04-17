@@ -3,7 +3,11 @@
 import { getUser } from "./UserService.js";
 import { UserTable, UsersList } from "./RenderView.js";
 
+const users = await getUser()
+UserTable(users,'lista_utenti_2')
+UsersList(users,'lista_utenti_1')
 
+/*
 //restituisce una promessa
 getUser()
 //elaboro la promessa, restituisce un json
@@ -46,4 +50,4 @@ UserTable(user_locale,'lista_utenti_2')
 // getUser().then((json)=>{
 //     //view
 //     alert(json.data[0])
-// })
+// })*/
