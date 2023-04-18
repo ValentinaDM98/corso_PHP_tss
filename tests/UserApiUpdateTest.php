@@ -3,6 +3,7 @@ use PHPUnit\Framework\TestCase;
 
 require_once "./tests/HTTPClient.php";
 require_once "./form_in_php/config.php";
+require_once "./tests/usersTest.php";
 
 class UserApiUpdateTest  extends TestCase {
 
@@ -10,6 +11,7 @@ class UserApiUpdateTest  extends TestCase {
     public function test_update_user_api()
     {
         (new PDO(DB_DSN,DB_USER,DB_PASSWORD))->query("TRUNCATE TABLE user;"); 
+        users_test();
         $payload  = [
             "first_name" => "Mirio",
             "last_name" => "DaRoit",
