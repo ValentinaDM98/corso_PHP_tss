@@ -3,7 +3,7 @@ use PHPUnit\Framework\TestCase;
 
 require_once "./tests/HTTPClient.php";
 require_once "./form_in_php/config.php";
-require_once "./tests/usersTest.php";
+require_once "./tests/taskTest.php";
 
 class TaskApiUpdateTest  extends TestCase {
 
@@ -11,19 +11,14 @@ class TaskApiUpdateTest  extends TestCase {
     public function test_update_task_api()
     {
         (new PDO(DB_DSN,DB_USER,DB_PASSWORD))->query("TRUNCATE TABLE task;"); 
-        users_test();
+        tasks_test();
 
-        $payload = [
+         $payload = [
+            "task_id" => 1,
             "user_id" => 1,
-            "first_name" => "Giuse",
-            "last_name" => "Bianchi",
-            "birthday" => "2017-03-17",
-            "birth_city" => "Como",
-            "regione_id" => 16,
-            "provincia_id" => 15,
-            "gender" => "M",
-            // "username" => "b@c",
-            // "password" => "Password",
+            "name" => "Comprare latte",
+            "due_date" => "2023-04-24",
+            "done" => false
         ];
 
       

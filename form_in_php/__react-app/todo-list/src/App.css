@@ -1,38 +1,76 @@
-.App {
+* {
+  box-sizing: border-box;
+}
+.body{
+  margin:0;
+  padding: 0;    
+}
+.sfondo{
+  background-color: rgb(220, 204, 215);
+  font-family: 'Edu NSW ACT Foundation', cursive;
+  font-family: 'PT Sans', sans-serif;
+  padding-bottom: 0.5rem;
+}
+.avatar{
+  display: flex;
+  align-items: center;    
+}
+.avatar__img{
+  border-radius: 50%;
+  width: 30px;
+  margin: 0.5rem;
+}
+.header {
+  padding: 0px 10px;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.form-control{
+   border: solid 1px rgb(54, 110, 221);
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.taskItem__add,.taskItem__date {
+  margin-top: 5px;
+  border: solid 1px rgb(54, 110, 221);
+  background-color: rgb(54, 110, 221);
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.filters {
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
+}
+.avatar__employee{
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+  margin-left: 1rem;
+  margin-top: 1rem;
 
-.App-link {
-  color: #61dafb;
 }
+.list__tasks{
+  padding: 12px 8px;
+  background: #eee;
+  font-size: 20px;
+  margin: 10px;
+  border: solid 1px rgb(54, 110, 221);
+  display: flex;
+  justify-content: space-between;
+  
+} 
+.task_done{
+  opacity:0.5;
+  text-decoration: line-through;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+}
+.list__tasks{
+  padding: 12px 8px;
+  background: #eee;
+  font-size: 20px;
+  margin: 10px;
+  border: solid 1px rgb(54, 110, 221);
+  display: flex;
+  justify-content: space-between;
+} 
+
+.remove__task {
+  margin-left: 0.4rem;
+  padding: .3rem .6rem;
+  border: solid 1px rgb(54, 110, 221);
+  background-color: rgb(54, 110, 221); 
 }
